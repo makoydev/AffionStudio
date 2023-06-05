@@ -1,68 +1,149 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Routes,
+} from "react-router-dom";
+import ContactPage from "../ContactPage";
 
 const Home = () => {
+  const handleScroll = () => {
+    const navbar = document.querySelector(".navbar");
+    const backToTopBtn = document.getElementById("backToTop");
+
+    if (navbar) {
+      if (window.scrollY > 0) {
+        navbar.classList.add("sticky");
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+
+    if (backToTopBtn) {
+      if (window.scrollY > 100) {
+        backToTopBtn.style.display = "block";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+    }
+  };
+
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  navLinks.forEach((navLink) => {
+    navLink.addEventListener("click", () => {
+      // Remove the 'w--current' className from all other nav-links
+      navLinks.forEach((link) => link.classList.remove("w--current"));
+
+      // Add the 'w--current' className to the clicked nav-link
+      navLink.classList.add("w--current");
+    });
+  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((navLink) => {
+      navLink.addEventListener("click", () => {
+        // Remove the 'w--current' className from all other nav-links
+        navLinks.forEach((link) => {
+          (link as HTMLElement).classList.remove("w--current");
+          (link as HTMLElement).style.backgroundColor = "#1d1d1d";
+          (link as HTMLElement).style.color = "#fff";
+        });
+
+        // Add the 'w--current' className to the clicked nav-link
+        (navLink as HTMLElement).classList.add("w--current");
+        (navLink as HTMLElement).style.backgroundColor = "#ff5732";
+        (navLink as HTMLElement).style.color = "#fff";
+      });
+    });
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <div>
-      <div
-        data-animation="default"
-        data-collapse="medium"
-        data-duration="400"
-        data-easing="ease"
-        data-easing2="ease"
-        role="banner"
-        className="navbar w-nav"
-      >
-        <div className="container w-container">
-          <div className="nav-menu-flex sticky-navbar">
-            <a
-              href="index.html"
-              aria-current="page"
-              className="brand w-nav-brand w--current"
-            >
-              AffionStudio
-            </a>
-            <div className="nav-menu-link-flex">
-              <nav role="navigation" className="nav-menu w-nav-menu">
-                <div className="nav-link-flex">
-                  <a
-                    href="#home"
-                    aria-current="page"
-                    className="nav-link w-nav-link w--current"
-                  >
-                    Home
-                  </a>
-                  <a href="#about" className="nav-link w-nav-link">
-                    About
-                  </a>
-                  <a href="#portfolio" className="nav-link w-nav-link">
-                    Portfolio
-                  </a>
+      <button id="backToTop" className="back-to-top" onClick={scrollToTop}>
+        Back to Top
+      </button>
 
-                  <a href="#pricing" className="nav-link w-nav-link">
-                    Pricing
-                  </a>
-                  <a href="#contact" className="nav-link w-nav-link">
-                    Contact
-                  </a>
-                </div>
-              </nav>
-              <div className="nav-menu-button w-nav-button">
-                <div className="w-icon-nav-menu"></div>
-              </div>
-              <div
-                data-w-id="db691496-a173-a4a8-6d55-1ae447b76548"
-                className="nav-menu-popup-wrap"
+      <Router>
+        <div
+          data-animation="default"
+          data-collapse="medium"
+          data-duration="400"
+          data-easing="ease"
+          data-easing2="ease"
+          role="banner"
+          className="navbar w-nav sticky"
+        >
+          <div className="container w-container">
+            <div className="nav-menu-flex">
+              <a
+                href="#home"
+                aria-current="page"
+                className="brand w-nav-brand w--current"
               >
-                <div className="nav-popup-line-wrap">
-                  <div className="nav-popup-line top-menu-line"></div>
-                  <div className="nav-popup-line center-menu-line"></div>
-                  <div className="nav-popup-line bottom-menu-line"></div>
+                AffionStudio
+              </a>
+              <div className="nav-menu-link-flex">
+                <nav role="navigation" className="nav-menu w-nav-menu ">
+                  <div className="nav-link-flex">
+                    <a
+                      href="#home"
+                      aria-current="page"
+                      className="nav-link w-nav-link w--current"
+                    >
+                      Home
+                    </a>
+                    <a href="#about" className="nav-link w-nav-link">
+                      About
+                    </a>
+                    <a href="#portfolio" className="nav-link w-nav-link">
+                      Portfolio
+                    </a>
+
+                    <a href="#pricing" className="nav-link w-nav-link">
+                      Pricing
+                    </a>
+                    <NavLink to="/contact" className="nav-link w-nav-link">
+                      Contact
+                    </NavLink>
+                  </div>
+                </nav>
+                <div className="nav-menu-button w-nav-button">
+                  <div className="w-icon-nav-menu"></div>
+                </div>
+                <div
+                  data-w-id="db691496-a173-a4a8-6d55-1ae447b76548"
+                  className="nav-menu-popup-wrap"
+                >
+                  <div className="nav-popup-line-wrap">
+                    <div className="nav-popup-line top-menu-line"></div>
+                    <div className="nav-popup-line center-menu-line"></div>
+                    <div className="nav-popup-line bottom-menu-line"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </Router>
+
       <div className="banner-section wf-section" id="home">
         <div className="container w-container">
           <div className="banner-wrap">
@@ -187,7 +268,6 @@ const Home = () => {
             </div>
             <div
               data-w-id="341baa52-9e28-5368-4566-a671cd4ba98b"
-              style={{ opacity: 0 }}
               className="banner-bg-wrap"
             ></div>
           </div>
@@ -1279,6 +1359,144 @@ const Home = () => {
                   </a>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="cta-footer">
+        <div className="cta-section wf-section">
+          <div className="container w-container">
+            <div className="cta-whole-wrap">
+              <div className="cta-wrap">
+                <div className="cta-content-wrap">
+                  <p className="cta-sub-title">Connect with us</p>
+                  <h2 className="cta-title">
+                    Let’s work together on the next big digital thing .
+                  </h2>
+                  <div className="cta-form-block w-form">
+                    <form
+                      id="wf-form-Hero-Form"
+                      name="wf-form-Hero-Form"
+                      data-name="Hero Form"
+                      method="get"
+                      className="cta-form"
+                    >
+                      <div className="cta-form-flex">
+                        <input
+                          type="email"
+                          className="cta-input w-input"
+                          maxLength={256}
+                          name="Hero-Email-2"
+                          data-name="Hero Email 2"
+                          aria-label="Enter your email"
+                          placeholder="Enter your email"
+                          id="Hero-Email-2"
+                          required={true}
+                        />
+                        <input
+                          type="submit"
+                          value="Get Started"
+                          data-wait="Please wait..."
+                          className="button w-button"
+                        />
+                      </div>
+                    </form>
+                    <div className="success-message w-form-done">
+                      <div>Thank you! Your submission has been received!</div>
+                    </div>
+                    <div className="error-message w-form-fail">
+                      <div>
+                        Oops! Something went wrong while submitting the form.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="cta-bg-wrap"></div>
+            </div>
+          </div>
+        </div>
+        <div className="footer wf-section">
+          <div className="container w-container">
+            <div>
+              <div className="footer-widget-flex">
+                <div className="footer-whole-wrap">
+                  <a
+                    href="#home"
+                    aria-current="page"
+                    className="footer-brand w-inline-block w--current"
+                  >
+                    AffionStudio
+                  </a>
+                </div>
+                <div
+                  data-w-id="9f830d42-9bef-2bb5-e50d-03d06424a11d"
+                  className="footer-widget-wrap"
+                >
+                  <p className="sub-title">Email</p>
+                  <a href="mailto:info@unifolio.com" className="footer-link">
+                    info@unifolio.com
+                  </a>
+                </div>
+
+                <div
+                  data-w-id="9f830d42-9bef-2bb5-e50d-03d06424a127"
+                  className="footer-widget-wrap"
+                >
+                  <p className="sub-title">Follow</p>
+                  <div className="footer-social-wrap">
+                    <a
+                      href="https://www.instagram.com/"
+                      className="footer-social-link w-inline-block"
+                    >
+                      <img
+                        src="https://assets.website-files.com/63ad48963db63e3052377b5d/63ae71db917c0c60a93b880a_Footer-01.svg"
+                        loading="lazy"
+                        alt="Footer Social Image"
+                      />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/"
+                      className="footer-social-link w-inline-block"
+                    >
+                      <img
+                        src="https://assets.website-files.com/63ad48963db63e3052377b5d/63ae71da3ca69813c8f76077_Footer-02.svg"
+                        loading="lazy"
+                        alt="Footer Social Image"
+                      />
+                    </a>
+                    <a
+                      href="https://twitter.com/"
+                      className="footer-social-link w-inline-block"
+                    >
+                      <img
+                        src="https://assets.website-files.com/63ad48963db63e3052377b5d/63ae71da6c21e625b0dc347e_Footer-03.svg"
+                        loading="lazy"
+                        alt="Footer Social Image"
+                      />
+                    </a>
+                    <a
+                      href="https://linkedin.com/"
+                      className="footer-social-link w-inline-block"
+                    >
+                      <img
+                        src="https://assets.website-files.com/63ad48963db63e3052377b5d/63ae71db892ff67a97948f39_Footer-04.svg"
+                        loading="lazy"
+                        alt="Footer Social Image"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="copyright-wrap">
+              <p
+                data-w-id="9f830d42-9bef-2bb5-e50d-03d06424a137"
+                className="copyright-content"
+              >
+                Copyright © AffionDesign
+              </p>
             </div>
           </div>
         </div>

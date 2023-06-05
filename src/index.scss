@@ -2386,9 +2386,21 @@ blockquote {
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0);
-  padding-top: 60px;
-  padding-bottom: 40px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 40px 0;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #ff5732;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: none; /* Initially hidden */
 }
 
 .nav-link {
@@ -2408,14 +2420,20 @@ blockquote {
   display: flex;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
   background-color: #ff5732;
 }
 
-.nav-link.w--current {
-  color: #ff5732;
-  background-color: #fff;
-}
+// .nav-link:hover {
+//   background-color: #ff5732;
+// }
+
+// .nav-link.w--current {
+//   color: #ff5732;
+//   background-color: #fff;
+// }
 
 .nav-link.w--open {
   position: relative;
@@ -2436,10 +2454,11 @@ blockquote {
   display: flex;
 }
 
-.sticky-navbar {
-  position: sticky;
+.sticky {
+  position: fixed;
   top: 0;
-  z-index: 1000;
+  width: 100%;
+  z-index: 100;
 }
 
 .nav-menu {
@@ -2768,6 +2787,10 @@ blockquote {
   padding-bottom: 20px;
 }
 
+.footer-brand {
+  font-size: 40px;
+}
+
 .footer-whole-wrap {
   justify-content: center;
   align-items: center;
@@ -2780,6 +2803,7 @@ blockquote {
   justify-content: space-between;
   align-items: flex-start;
   padding-top: 50px;
+  padding-bottom: 50px;
   display: flex;
 }
 
@@ -3967,6 +3991,7 @@ blockquote {
 .pricing-page-section {
   padding-top: 120px;
   padding-bottom: 120px;
+  margin-bottom: 200px;
 }
 
 .pricing-page-flex {
