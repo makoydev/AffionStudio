@@ -136,11 +136,11 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <Routes>
+          <Route path="*" element={<Home />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
       </div>
-      <Routes>
-        <Route path="*" element={<Home />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
 
       <div className="banner-section wf-section" id="home">
         <div className="container w-container">
