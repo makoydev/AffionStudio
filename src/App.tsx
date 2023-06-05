@@ -1,15 +1,16 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import "./index.scss";
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <Router>
-        <Home />
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/*" element={<Home />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
