@@ -77,72 +77,70 @@ const Home = () => {
         Back to Top
       </button>
 
-      <Router>
-        <div
-          data-animation="default"
-          data-collapse="medium"
-          data-duration="400"
-          data-easing="ease"
-          data-easing2="ease"
-          role="banner"
-          className="navbar w-nav sticky"
-        >
-          <div className="container w-container">
-            <div className="nav-menu-flex">
-              <a
-                href="#home"
-                aria-current="page"
-                className="brand w-nav-brand w--current"
-              >
-                AffionStudio
-              </a>
-              <div className="nav-menu-link-flex">
-                <nav role="navigation" className="nav-menu w-nav-menu ">
-                  <div className="nav-link-flex">
-                    <a
-                      href="#home"
-                      aria-current="page"
-                      className="nav-link w-nav-link w--current"
-                    >
-                      Home
-                    </a>
-                    <a href="#about" className="nav-link w-nav-link">
-                      About
-                    </a>
-                    <a href="#portfolio" className="nav-link w-nav-link">
-                      Portfolio
-                    </a>
+      <div
+        data-animation="default"
+        data-collapse="medium"
+        data-duration="400"
+        data-easing="ease"
+        data-easing2="ease"
+        role="banner"
+        className="navbar w-nav sticky"
+      >
+        <div className="container w-container">
+          <div className="nav-menu-flex">
+            <a
+              href="#home"
+              aria-current="page"
+              className="brand w-nav-brand w--current"
+            >
+              AffionStudio
+            </a>
+            <div className="nav-menu-link-flex">
+              <nav role="navigation" className="nav-menu w-nav-menu ">
+                <div className="nav-link-flex">
+                  <a
+                    href="#home"
+                    aria-current="page"
+                    className="nav-link w-nav-link w--current"
+                  >
+                    Home
+                  </a>
+                  <a href="#about" className="nav-link w-nav-link">
+                    About
+                  </a>
+                  <a href="#portfolio" className="nav-link w-nav-link">
+                    Portfolio
+                  </a>
 
-                    <a href="#pricing" className="nav-link w-nav-link">
-                      Pricing
-                    </a>
-                    <NavLink to="/contact" className="nav-link w-nav-link">
-                      Contact
-                    </NavLink>
-                  </div>
-                </nav>
-                <div className="nav-menu-button w-nav-button">
-                  <div className="w-icon-nav-menu"></div>
+                  <a href="#pricing" className="nav-link w-nav-link">
+                    Pricing
+                  </a>
+                  <NavLink to="/contact" className="nav-link w-nav-link">
+                    Contact
+                  </NavLink>
                 </div>
-                <div
-                  data-w-id="db691496-a173-a4a8-6d55-1ae447b76548"
-                  className="nav-menu-popup-wrap"
-                >
-                  <div className="nav-popup-line-wrap">
-                    <div className="nav-popup-line top-menu-line"></div>
-                    <div className="nav-popup-line center-menu-line"></div>
-                    <div className="nav-popup-line bottom-menu-line"></div>
-                  </div>
+              </nav>
+              <div className="nav-menu-button w-nav-button">
+                <div className="w-icon-nav-menu"></div>
+              </div>
+              <div
+                data-w-id="db691496-a173-a4a8-6d55-1ae447b76548"
+                className="nav-menu-popup-wrap"
+              >
+                <div className="nav-popup-line-wrap">
+                  <div className="nav-popup-line top-menu-line"></div>
+                  <div className="nav-popup-line center-menu-line"></div>
+                  <div className="nav-popup-line bottom-menu-line"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-      </Router>
+      </div>
+      <Routes>
+        <Route path="*" element={<Home />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
 
       <div className="banner-section wf-section" id="home">
         <div className="container w-container">
