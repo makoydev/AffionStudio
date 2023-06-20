@@ -1,0 +1,24 @@
+.container {
+  height: 50px;
+  width: 200px;
+  background-color: burlywood;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.small {
+  width: 100px;
+  height: 30px;
+}
+
+.medium {
+  width: 150px;
+  height: 50px;
+}
+
+.large {
+  width: 200px;
+  height: 70px;
+}

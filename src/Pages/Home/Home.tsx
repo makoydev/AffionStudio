@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import Navigation from "../../Components/Navigation";
+import { Link as ScrollLink } from "react-scroll";
+import Button from "../../Components/Button";
 
 const Home = () => {
   const handleScroll = () => {
@@ -67,8 +69,17 @@ const Home = () => {
   };
   return (
     <div>
+      <div id="top"></div>
       <button id="backToTop" className="back-to-top" onClick={scrollToTop}>
-        Back to Top
+        <ScrollLink
+          className="btt"
+          to="top"
+          smooth={true}
+          duration={500}
+          offset={-80}
+        >
+          Back to top
+        </ScrollLink>
       </button>
 
       <Navigation />

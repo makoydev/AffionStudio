@@ -26,10 +26,10 @@ const ContactPage = () => {
               <div className="nav-link-flex">
                 <ScrollLink
                   className="nav-link w-nav-link"
-                  to=""
+                  to="top"
                   smooth={true}
                   duration={500}
-                  offset={-10000}
+                  offset={-80}
                 >
                   Home
                 </ScrollLink>
@@ -38,6 +38,7 @@ const ContactPage = () => {
                   to="about"
                   smooth={true}
                   duration={500}
+                  offset={-250}
                 >
                   About
                 </ScrollLink>
@@ -46,6 +47,7 @@ const ContactPage = () => {
                   to="portfolio"
                   smooth={true}
                   duration={500}
+                  offset={-80}
                 >
                   Portfolio
                 </ScrollLink>
@@ -55,6 +57,7 @@ const ContactPage = () => {
                   to="pricing"
                   smooth={true}
                   duration={500}
+                  offset={-280}
                 >
                   Pricing
                 </ScrollLink>
